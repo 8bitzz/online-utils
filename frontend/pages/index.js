@@ -1,6 +1,12 @@
 import Head from 'next/head'
 import Image from 'next/image'
 import styles from '../styles/Home.module.css'
+import dynamic from 'next/dynamic'
+
+const DynamicJSONValidate = dynamic(
+  () => import('../components/inputPanel/InputPanel'),
+  { ssr: false }
+)
 
 export default function Home() {
   return (
@@ -11,10 +17,8 @@ export default function Home() {
         <link rel="icon" href="/logo.png" />
       </Head>
 
-      <main className="flex flex-col items-center min-h-screen w-full flex-1 px-20 text-center mt-20 ">
-        <h1 className="text-6xl font-bold">
-          Welcome to <a href="https://nextjs.org">Next.js!</a>
-        </h1>
+      <main className="flex flex-col items-center min-h-screen w-full flex-1 px-20 text-center">
+        <DynamicJSONValidate/>
       </main>
     </div>
   )

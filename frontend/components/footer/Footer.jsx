@@ -3,7 +3,7 @@ import React from "react";
 const Footer = () => {
   return (
     <>
-      <footer className="flex items-center justify-center w-full h-24 border-t">
+      <footer className="flex items-center justify-center w-full h-24 border-t border-gray-700 bg-gray-800">
         <a
           className="flex items-center justify-center"
           href="https://www.lib.rmit.edu.au/easy-cite/"
