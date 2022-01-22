@@ -6,19 +6,20 @@ const someJSCodeExample = `
 `;
 
 const InputPanel = () => {
-  const [value, setValue] = useState("");
   const editorRef = useRef(null);
 
   function handleEditorDidMount(editor, monaco) {
     editorRef.current = editor; 
   }
 
-  const onSampleClick = () => {
-    setValue(someJSCodeExample);
+  const onSampleClick = (editor, monaco) => {
+    console.log("Sample Button Clicked");
+    editorRef.current.setValue(someJSCodeExample);
   };
 
-  const onClearButtonClick = () => {
+  const onClearButtonClick = (editor, monaco) => {
     console.log("Clear Button Clicked");
+    editorRef.current.setValue("");
   };
 
   return (
@@ -46,7 +47,6 @@ const InputPanel = () => {
         height="100vh"
         theme="vs-dark"
         defaultLanguage="json"
-        value={value}
         onMount={handleEditorDidMount}
         scrollbar={{
           vertical: "hidden",
