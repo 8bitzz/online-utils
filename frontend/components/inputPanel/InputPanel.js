@@ -1,38 +1,57 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import Editor from "@monaco-editor/react";
-import files from "./files";
+
+const someJSCodeExample = `
+{"store":{"book":[{"category":"reference", "sold": false,"author":"Nigel Rees","title":"Sayings of the Century","price":8.95},{"category":"fiction","author":"Evelyn Waugh","title":"Sword of Honour","price":12.99},{"category":"fiction","author":"J. R. R. Tolkien","title":"The Lord of the Rings","act": null, "isbn":"0-395-19395-8","price":22.99}],"bicycle":{"color":"red","price":19.95}}}
+`;
 
 const InputPanel = () => {
-  const [fileName, setFileName] = useState("script.js");
+  const [value, setValue] = useState("");
+  const editorRef = useRef(null);
 
-  const file = files[fileName];
+  function handleEditorDidMount(editor, monaco) {
+    editorRef.current = editor; 
+  }
+
+  const onSampleClick = () => {
+    setValue(someJSCodeExample);
+  };
+
+  const onClearButtonClick = () => {
+    console.log("Clear Button Clicked");
+  };
 
   return (
     <>
-      <button
-        disabled={fileName === "script.js"}
-        onClick={() => setFileName("script.js")}
-      >
-        script.js
-      </button>
-      <button
-        disabled={fileName === "style.css"}
-        onClick={() => setFileName("style.css")}
-      >
-        style.css
-      </button>
-      <button
-        disabled={fileName === "index.html"}
-        onClick={() => setFileName("index.html")}
-      >
-        index.html
-      </button>
+      <h1 className="text-3xl text-white">Input Panel</h1>
+      <div className="flex flex-row justify-start">
+        <button className="mr-2 mb-2 px-2 py-1 bg-gray-300 rounded-sm">
+          Clipboard
+        </button>
+        <button
+          onClick={onSampleClick}
+          className="mr-2 mb-2 px-2 py-1 bg-gray-300 rounded-sm"
+        >
+          Sample
+        </button>
+        <button
+          onClick={onClearButtonClick}
+          className="mr-2 mb-2 px-2 py-1 bg-gray-300 rounded-sm"
+        >
+          Clear
+        </button>
+      </div>
+
       <Editor
         height="100vh"
         theme="vs-dark"
-        path={file.name}
-        defaultLanguage={file.language}
-        defaultValue={file.value}
+        defaultLanguage="json"
+        value={value}
+        onMount={handleEditorDidMount}
+        scrollbar={{
+          vertical: "hidden",
+          horizontal: "hidden",
+        }}
       />
     </>
   );

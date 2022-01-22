@@ -10,29 +10,20 @@ const navigation = [
   { name: "Team", href: "#", current: false },
 ];
 
-const categories = [
-  { name: "Unix Time Converter" },
-  { name: "JSON Format/Validate" },
-  { name: "Base64 Encode/Decode" },
-  { name: "URL Parser" },
-  { name: "Number base Converter" },
-  { name: "Lorem Ipsum Generator" },
-];
-
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
 
 export default function NavBar() {
   return (
-    <Disclosure as="nav" className="bg-gray-800">
+    <Disclosure as="nav">
       {({ open }) => (
-        <>
+        <div className="fixed w-full z-40 top-0 bg-monaco-dark">
           <div className="w-full py-2 mx-auto px-2 sm:px-6 lg:px-10">
             <div className="relative flex items-center justify-between h-16">
               <div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
                 {/* Mobile menu button*/}
-                <Disclosure.Button className="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
+                <Disclosure.Button className="inline-flex items-center justify-center p-2 rounded-md text-white hover:text-white hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
                   <span className="sr-only">Open main menu</span>
                   {open ? (
                     <XIcon className="block h-6 w-6" aria-hidden="true" />
@@ -43,17 +34,6 @@ export default function NavBar() {
               </div>
               <div className="flex-1 flex items-center justify-center sm:items-stretch sm:justify-start">
                 <div className="flex-shrink-0 flex items-center">
-                  {/* <img
-                    className="block lg:hidden h-8 w-auto"
-                    src="https://tailwindui.com/img/logos/workflow-mark-indigo-500.svg"
-                    alt="online-utils"
-                  />
-                  <img
-                    className="hidden lg:block h-8 w-auto"
-                    src="https://tailwindui.com/img/logos/workflow-logo-indigo-500-mark-white-text.svg"
-                    alt="online-utils"
-                  /> */}
-
                   <Link href="/">
                     <img
                       className="block lg:hidden h-10 w-auto cursor-pointer"
@@ -69,7 +49,7 @@ export default function NavBar() {
                     />
                   </Link>
                   <div className="hidden sm:block sm:ml-6 relative">
-                    <Menudropdown categories={categories} />
+                    <Menudropdown />
                   </div>
                 </div>
                 <div className="hidden sm:block sm:ml-6">
@@ -180,7 +160,7 @@ export default function NavBar() {
               ))}
             </div>
           </Disclosure.Panel>
-        </>
+        </div>
       )}
     </Disclosure>
   );

@@ -3,7 +3,15 @@ import { Fragment, useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { ChevronDownIcon } from "@heroicons/react/solid";
 
-export default function Menudropdown({ categories }) {
+const categories = [
+    { name: "Unix Time Converter", path: "tool/time-converter" },
+    { name: "JSON Format/Validate", path: "tool/json-validate" },
+    { name: "Base64 Encode/Decode", path: "tool/base64-encode-decode" },
+    { name: "URL Parser", path: "tool/url-parser" },
+    { name: "Number base Converter", path: "tool/base-converter" }
+  ];
+
+export default function Menudropdown() {
     return (
         <Fragment>
             <Menu as="div" className="relative inline-block text-left mr-3">
@@ -31,7 +39,7 @@ export default function Menudropdown({ categories }) {
                                 <Menu.Item key={index}>
                                     {({ active }) => (
                                         <Link
-                                            href={`/tool/${category.name}`}
+                                            href={category.path}
                                         >
                                             <button
                                                 className={`${
